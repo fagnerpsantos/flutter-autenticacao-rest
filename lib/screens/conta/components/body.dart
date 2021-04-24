@@ -3,10 +3,7 @@ import '../../../models/conta.dart';
 import '../../../models/transacao.dart';
 import '../../../screens/components/card_conta.dart';
 import '../../../screens/components/card_transacao.dart';
-import '../../../screens/transacao/transacao_screen.dart';
 import '../../../services/conta_rest_service.dart';
-import '../../../services/conta_service.dart';
-import '../../../services/transacao_service.dart';
 
 class Body extends StatefulWidget {
   final int id;
@@ -18,8 +15,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  TransacaoService ts = TransacaoService();
-  ContaService cs = ContaService();
   ContaRestService crs = ContaRestService();
   Future<List> _loadTransacoes;
   Future<Conta> _loadConta;
@@ -29,7 +24,6 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     // TODO: implement initState
-    _loadTransacoes = _getTransacoes(widget.id);
     _loadConta = _getConta(widget.id);
     super.initState();
   }
@@ -88,9 +82,6 @@ class _BodyState extends State<Body> {
         });
   }
 
-  Future<List> _getTransacoes(int id) async {
-    return await ts.getTransacoesConta(id);
-  }
 
   Future<Conta> _getConta(int id) async {
     return await crs.getContaId(id.toString());

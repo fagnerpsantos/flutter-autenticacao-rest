@@ -3,9 +3,7 @@ import '../../../screens/components/card_conta.dart';
 import '../../../screens/components/card_transacao.dart';
 import '../../../screens/transacao/transacao_screen.dart';
 import '../../../services/conta_rest_service.dart';
-import '../../../services/conta_service.dart';
 import '../../../services/transacao_rest_service.dart';
-import '../../../services/transacao_service.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -13,8 +11,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  ContaService cs = ContaService();
-  TransacaoService ts = TransacaoService();
   ContaRestService crs = ContaRestService();
   TransacaoRestService trs = TransacaoRestService();
   Future<List> _loadContas;

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../../models/conta.dart';
 import '../../screens/home/home_screen.dart';
 import '../../services/conta_rest_service.dart';
-import '../../services/conta_service.dart';
 
 class CadastrarContaScreen extends StatelessWidget {
   final _tituloController = TextEditingController();
   final _saldoController = TextEditingController();
-  ContaService cs = ContaService();
   ContaRestService crs = ContaRestService();
   final _formKey = GlobalKey<FormState>();
   @override

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../models/transacao.dart';
 import '../../../screens/components/card_transacao.dart';
 import '../../../services/transacao_rest_service.dart';
-import '../../../services/transacao_service.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -10,7 +9,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  TransacaoService ts = TransacaoService();
   TransacaoRestService trs = TransacaoRestService();
   Future<List> _loadTransacoes;
   List<Transacao> _transacoes;

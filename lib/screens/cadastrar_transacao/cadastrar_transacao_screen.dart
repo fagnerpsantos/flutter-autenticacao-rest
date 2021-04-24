@@ -4,9 +4,7 @@ import '../../models/conta.dart';
 import '../../models/transacao.dart';
 import '../../screens/home/home_screen.dart';
 import '../../services/conta_rest_service.dart';
-import '../../services/conta_service.dart';
 import '../../services/transacao_rest_service.dart';
-import '../../services/transacao_service.dart';
 
 class CadastrarTransacaoScreen extends StatefulWidget {
   final int tipoTransacao;
@@ -22,12 +20,10 @@ class _CadastrarTransacaoScreenState extends State<CadastrarTransacaoScreen> {
   final _valorController = TextEditingController();
   final _dataController = TextEditingController();
   Conta _contaSelecionada;
-  ContaService cs = ContaService();
   ContaRestService crs = ContaRestService();
   Future<List> _loadContas;
   List<Conta> _contas;
   DateTime selectedDate = DateTime.now();
-  TransacaoService ts = TransacaoService();
   TransacaoRestService trs = TransacaoRestService();
 
   @override
