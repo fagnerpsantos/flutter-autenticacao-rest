@@ -17,11 +17,11 @@ class RestUtil {
     return response;
   }
 
-  static Future<http.Response> getData(String uri) async {
+  static Future<http.Response> getData(String uri, String token) async {
     final response = await http.get(
       Uri.http(urlBase, uri),
       headers: <String, String> {
-        'x-api-key': 'sua_app_key'
+        'Authorization': 'Bearer ' + token
       },
     );
     return response;

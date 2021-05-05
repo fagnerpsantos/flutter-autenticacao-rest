@@ -9,8 +9,8 @@ class TransacaoRestService {
     final response = await RestUtil.addData('transacoes', transacao.toJson());
   }
 
-  Future<List<Transacao>> getTransacoes() async {
-    final response = await RestUtil.getData('transacoes');
+  Future<List<Transacao>> getTransacoes(String token) async {
+    final response = await RestUtil.getData('transacoes', token);
     if (response.statusCode == 200) {
       List<dynamic> conteudo = jsonDecode(response.body);
       List<Transacao> transacoes = conteudo.map((dynamic transacao) =>

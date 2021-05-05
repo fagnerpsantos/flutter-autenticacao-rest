@@ -4,11 +4,25 @@ import '../../services/usuario_rest_service.dart';
 import '../../models/usuario.dart';
 import '../home/home_screen.dart';
 
-class CadastrarUsuarioScreen extends StatelessWidget {
+class CadastrarUsuarioScreen extends StatefulWidget {
+  @override
+  _CadastrarUsuarioScreenState createState() => _CadastrarUsuarioScreenState();
+}
+
+class _CadastrarUsuarioScreenState extends State<CadastrarUsuarioScreen> {
   final _nomeController = TextEditingController();
+
   final _emailController = TextEditingController();
+
   final _senhaController = TextEditingController();
+
   UsuarioRestService urs = UsuarioRestService();
+
+  final _formKey = GlobalKey<FormState>();
+
+  String hintTextSenha = "Senha";
+  String hintTextNome = "Nome";
+  String hintTextEmail = "Email";
 
   @override
   Widget build(BuildContext context) {
@@ -47,75 +61,120 @@ class CadastrarUsuarioScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(top: 30),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 45,
-                            padding: EdgeInsets.only(
-                                top: 4, left: 16, right: 16, bottom: 4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.black12),
-                            child: TextField(
-                              controller: _nomeController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  icon: Icon(
-                                    Icons.person,
-                                    color: Colors.grey,
-                                  ),
-                                  hintText: 'Nome'),
+                    Form(
+                      key: _formKey,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 2,
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.only(top: 30),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 45,
+                              padding: EdgeInsets.only(
+                                  top: 4, left: 16, right: 16, bottom: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.black12),
+                              child: TextFormField(
+                                onTap: () {
+                                  setState(() {
+                                    hintTextNome = "Nome";
+
+                                  });
+                                },
+                                controller: _nomeController,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    icon: Icon(
+                                      Icons.person,
+                                      color: Colors.grey,
+                                    ),
+                                    hintText: hintTextNome),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    setState(() {
+                                      hintTextNome = "Campo requerido";
+                                    });
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 45,
-                            margin: EdgeInsets.only(top: 32),
-                            padding: EdgeInsets.only(
-                                top: 4, left: 16, right: 16, bottom: 4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.black12),
-                            child: TextField(
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  icon: Icon(
-                                    Icons.mail,
-                                    color: Colors.grey,
-                                  ),
-                                  hintText: 'Email'),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 45,
+                              margin: EdgeInsets.only(top: 32),
+                              padding: EdgeInsets.only(
+                                  top: 4, left: 16, right: 16, bottom: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.black12),
+                              child: TextFormField(
+                                onTap: () {
+                                  setState(() {
+                                    hintTextEmail = "Email";
+
+                                  });
+                                },
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    icon: Icon(
+                                      Icons.mail,
+                                      color: Colors.grey,
+                                    ),
+                                    hintText: hintTextEmail),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    setState(() {
+                                      hintTextEmail = "Campo requerido";
+                                    });
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 45,
-                            margin: EdgeInsets.only(top: 32),
-                            padding: EdgeInsets.only(
-                                top: 4, left: 16, right: 16, bottom: 4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.black12),
-                            child: TextField(
-                              controller: _senhaController,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  icon: Icon(
-                                    Icons.enhanced_encryption_rounded,
-                                    color: Colors.grey,
-                                  ),
-                                  hintText: 'Senha'),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 45,
+                              margin: EdgeInsets.only(top: 32),
+                              padding: EdgeInsets.only(
+                                  top: 4, left: 16, right: 16, bottom: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.black12),
+                              child: TextFormField(
+                                onTap: () {
+                                  setState(() {
+                                    hintTextSenha = "Senha";
+
+                                  });
+                                },
+                                controller: _senhaController,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    icon: Icon(
+                                      Icons.enhanced_encryption_rounded,
+                                      color: Colors.grey,
+                                    ),
+                                    hintText: hintTextSenha),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    setState(() {
+                                      hintTextSenha = "Campo requerido";
+                                    });
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -126,13 +185,15 @@ class CadastrarUsuarioScreen extends StatelessWidget {
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: InkWell(
                         onTap: () {
-                          Usuario novoUsuario = Usuario(
-                              nome: _nomeController.text,
-                              email: _emailController.text,
-                              senha: _senhaController.text);
-                          urs.addUsuario(novoUsuario);
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => HomeScreen()));
+                          if (_formKey.currentState.validate()) {
+                            Usuario novoUsuario = Usuario(
+                                nome: _nomeController.text,
+                                email: _emailController.text,
+                                senha: _senhaController.text);
+                            urs.addUsuario(novoUsuario);
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => HomeScreen()));
+                          }
                         },
                         borderRadius: BorderRadius.circular(20),
                         child: Container(

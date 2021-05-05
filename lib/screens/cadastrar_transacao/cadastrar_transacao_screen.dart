@@ -29,7 +29,7 @@ class _CadastrarTransacaoScreenState extends State<CadastrarTransacaoScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    _loadContas = _getContas();
+    // _loadContas = _getContas();
     super.initState();
   }
   @override
@@ -153,7 +153,7 @@ class _CadastrarTransacaoScreenState extends State<CadastrarTransacaoScreen> {
     }
   }
 
-  Future<List> _getContas() async {
-    return await crs.getContas();
-  }
+  // Future<List> _getContas() async {
+  //   return await crs.getContas();
+  // }
 }

@@ -16,7 +16,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     // TODO: implement initState
-    _loadTransacoes = _getTransacoes();
+    // _loadTransacoes = _getTransacoes();
     super.initState();
   }
   @override
@@ -61,7 +61,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Future<List> _getTransacoes() async {
-    return await trs.getTransacoes();
-  }
+  // Future<List> _getTransacoes() async {
+  //   return await trs.getTransacoes();
+  // }
 }

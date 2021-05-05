@@ -3,10 +3,13 @@ import '../../screens/home/components/body.dart';
 import '../../screens/home/components/speed_dial.dart';
 
 class HomeScreen extends StatelessWidget {
+  String token;
+
+  HomeScreen({this.token});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(),
+      body: Body(token: token,),
       floatingActionButton: buildSpeedDial(context),
     );
   }

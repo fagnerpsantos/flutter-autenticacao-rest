@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:flutter_autenticacao_apis_rest/models/login.dart';
 import '../models/usuario.dart';
 import '../utils/rest_util.dart';
-import 'package:http/http.dart';
 
 class LoginRestService {
-  Future<Usuario> loginUsuario(Login usuario) async {
+  Future<String> loginUsuario(Login usuario) async {
     final response = await RestUtil.addData('login', usuario.toJson());
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return null;
+    }
   }
 
   Future<Usuario> getUsuarioId(String id) async {

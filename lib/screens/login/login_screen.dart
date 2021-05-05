@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_autenticacao_apis_rest/services/login_rest_service.dart';
 import '../../models/login.dart';
 import '../home/home_screen.dart';
+import '../../utils/secure_storage_util.dart';
 
 class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   LoginRestService urs = LoginRestService();
+  SecureStorageUtil ss = SecureStorageUtil();
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,15 +107,22 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       Login novoLogin = Login(
                           email: _emailController.text,
                           senha: _senhaController.text
                       );
-                      urs.loginUsuario(novoLogin);
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => HomeScreen())
-                      );
+                      var jwt = await urs.loginUsuario(novoLogin);
+                      if (jwt != null){
+                        var token = json.decode(jwt)['acess_token'];
+                        ss.insertData('acess_token', token);
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => HomeScreen(token: token))
+                        );
+                      } else {
+                        print("erro");
+                      }
+
                     },
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
