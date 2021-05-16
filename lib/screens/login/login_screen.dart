@@ -10,8 +10,6 @@ class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   LoginRestService urs = LoginRestService();
-  SecureStorageUtil ss = SecureStorageUtil();
-
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +113,9 @@ class LoginScreen extends StatelessWidget {
                       var jwt = await urs.loginUsuario(novoLogin);
                       if (jwt != null){
                         var token = json.decode(jwt)['acess_token'];
-                        ss.insertData('acess_token', token);
+                        StorageUtil.putString("access_token", token);
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => HomeScreen(token: token))
+                            MaterialPageRoute(builder: (_) => HomeScreen())
                         );
                       } else {
                         print("erro");

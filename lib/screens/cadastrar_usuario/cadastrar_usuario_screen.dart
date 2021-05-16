@@ -192,7 +192,7 @@ class _CadastrarUsuarioScreenState extends State<CadastrarUsuarioScreen> {
                                 senha: _senhaController.text);
                             urs.addUsuario(novoUsuario);
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => HomeScreen()));
+                                MaterialPageRoute(builder: (_) => LoginScreen()));
                           }
                         },
                         borderRadius: BorderRadius.circular(20),

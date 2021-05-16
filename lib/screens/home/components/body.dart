@@ -9,10 +9,6 @@ import 'dart:convert';
 
 
 class Body extends StatefulWidget {
-  String token;
-
-  Body({this.token});
-
   @override
   _BodyState createState() => _BodyState();
 }
@@ -24,26 +20,16 @@ class _BodyState extends State<Body> {
   Future<List> _loadTransacoes;
   List _contas;
   List _transacoes;
-  Future<String> _loadToken;
-  String _token;
-  SecureStorageUtil ss = SecureStorageUtil();
-
 
   @override
   void initState() {
     // TODO: implement initState
-    _token = widget.token;
     _refresh();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _loadToken,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.hasData) {
-          _token = snapshot.data;
-          return RefreshIndicator(
+    return RefreshIndicator(
             onRefresh: _refresh,
             child: Padding(
               padding: EdgeInsets.only(top: 70),
@@ -145,34 +131,21 @@ class _BodyState extends State<Body> {
                 ],
               ),
             ),
-
           );
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      }
-    );
   }
 
   Future<Null> _refresh() async {
     setState(() {
-      _loadToken = _getJwt();
-      _loadTransacoes = _getTransacoes(_token);
-      _loadContas = _getContas(_token);
+      _loadTransacoes = _getTransacoes();
+      _loadContas = _getContas();
     });
   }
 
-  Future<String> _getJwt() async {
-    return await ss.getData('acess_token');
+  Future<List> _getContas() async {
+    return await crs.getContas();
   }
 
-  Future<List> _getContas(String token) async {
-    return await crs.getContas(token);
-  }
-
-  Future<List> _getTransacoes(String token) async {
-    return await trs.getTransacoes(token);
+  Future<List> _getTransacoes() async {
+    return await trs.getTransacoes();
   }
 }

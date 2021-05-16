@@ -10,8 +10,8 @@ class ContaRestService {
     final Response response = await RestUtil.addData('contas', conta.toJson());
   }
 
-  Future<List<Conta>> getContas(String token) async {
-    final Response response = await RestUtil.getData('contas', token);
+  Future<List<Conta>> getContas() async {
+    final Response response = await RestUtil.getData('contas');
     if (response.statusCode == 200) {
       List<dynamic> conteudo = jsonDecode(response.body);
       List<Conta> contas = conteudo.map((dynamic conta) =>

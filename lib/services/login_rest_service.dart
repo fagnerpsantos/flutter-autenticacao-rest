@@ -6,7 +6,7 @@ import '../utils/rest_util.dart';
 
 class LoginRestService {
   Future<String> loginUsuario(Login usuario) async {
-    final response = await RestUtil.addData('login', usuario.toJson());
+    final response = await RestUtil.postData('login', usuario.toJson());
     if (response.statusCode == 200) {
       return response.body;
     } else {

@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 
 class UsuarioRestService {
   Future<Usuario> addUsuario(Usuario usuario) async {
-    final response = await RestUtil.addData('usuarios', usuario.toJson());
+    final response = await RestUtil.postData('usuarios', usuario.toJson());
   }
 
   Future<Usuario> getUsuarioId(String id) async {
