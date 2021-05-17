@@ -32,7 +32,7 @@ class _EditarTransacaoScreenState extends State<EditarTransacaoScreen> {
   void initState() {
     // TODO: implement initState
     _loadTransacao = _getTransacao(widget.idTransacao);
-    // _loadContas = _getContas();
+    _loadContas = _getContas();
     super.initState();
   }
   @override
@@ -171,9 +171,9 @@ class _EditarTransacaoScreenState extends State<EditarTransacaoScreen> {
     }
   }
 
-  // Future<List> _getContas() async {
-  //   return await crs.getContas();
-  // }
+  Future<List> _getContas() async {
+    return await crs.getContas();
+  }
 
   Future<Transacao> _getTransacao(String id) async {
     return await trs.getTransacaoId(id);
